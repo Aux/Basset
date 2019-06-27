@@ -58,12 +58,14 @@ namespace Basset.Services
             _ = Task.Run(async () =>
             {
                 if (!(s is SocketUserMessage msg)) return;
+                if (!(s.Channel is SocketGuildChannel)) return;
 
                 int argPos = 0;
                 var context = new ShardedCommandContext(_discord, msg);
                 if (msg.HasMentionPrefix(_discord.CurrentUser, ref argPos))
                 {
-                    if (IsRatelimited(context.User.Id)) return;
+                    if (!(context.User as SocketGuildUser).GuildPermissions.Administrator)
+                        if (IsRatelimited(context.User.Id)) return;
 
                     using (context.Channel.EnterTypingState())
                     {
