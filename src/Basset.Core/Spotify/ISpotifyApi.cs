@@ -3,11 +3,13 @@ using System.Threading.Tasks;
 
 namespace Basset.Spotify
 {
+    [Header("Accept", "application/json")]
+    [Header("Content-Type", "application/json")]
     public interface ISpotifyApi
     {
         [Get("recommendations")]
-        Task<object> GetRecommendationsAsync(
-            [Header("Authorization")]string authorization);
+        Task<SpotifyRecommendedResponse> GetRecommendationsAsync(
+            [Header("Authorization")]string authorization, [QueryMap]GetRecommendationsParams args);
 
         [Post("users/{userId}/playlists")]
         Task<object> CreatePlaylistAsync(

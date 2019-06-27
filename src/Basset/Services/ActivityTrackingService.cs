@@ -27,6 +27,7 @@ namespace Basset.Services
         public void Start()
         {
             _discord.GuildMemberUpdated += OnGuildMemberUpdatedAsync;
+            _logger.LogInformation("Started");
         }
 
         public void Stop()

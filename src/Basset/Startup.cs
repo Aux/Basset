@@ -74,7 +74,7 @@ namespace Basset
             var spotify = RestClient.For<ISpotifyApi>(SpotifyConstants.ApiUrl);
 
             // Internal
-            services.AddDbContext<RootDatabase>()
+            services
                 .AddDbContext<SpotifyDatabase>()
                 .AddSingleton<StartupService>()
                 .AddSingleton<LoggingService>()

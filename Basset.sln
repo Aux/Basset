@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basset", "src\Basset\Basset.csproj", "{278BF7C6-A39B-4EDF-B923-E8F01ECB71F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basset.Core", "src\Basset.Core\Basset.Core.csproj", "{A549921F-2C48-4B6B-ABC0-8DC63C0350B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basset.Core", "src\Basset.Core\Basset.Core.csproj", "{A549921F-2C48-4B6B-ABC0-8DC63C0350B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,6 +2,7 @@
 using Discord.WebSocket;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace Basset.Services
 {
     public class CommandHandlingService : IBackgroundService
     {
+        private ConcurrentDictionary<ulong, DateTime> _users;
         private readonly ILogger<CommandHandlingService> _logger;
         private readonly IServiceProvider _provider;
         private readonly DiscordShardedClient _discord;
@@ -21,6 +23,7 @@ namespace Basset.Services
             DiscordShardedClient discord,
             CommandService commands)
         {
+            _users = new ConcurrentDictionary<ulong, DateTime>();
             _logger = logger;
             _provider = provider;
             _discord = discord;
@@ -39,6 +42,17 @@ namespace Basset.Services
             _logger.LogInformation("Stopped");
         }
 
+        public bool IsRatelimited(ulong userId)
+        {
+            if (_users.TryRemove(userId, out DateTime expires))
+            {
+                if (expires < DateTime.Now) return true;
+                _users.TryAdd(userId, DateTime.Now.AddMinutes(1));
+            }
+
+            return false;
+        }
+
         private Task OnMessageReceivedAsync(SocketMessage s)
         {
             _ = Task.Run(async () =>
@@ -49,6 +63,8 @@ namespace Basset.Services
                 var context = new ShardedCommandContext(_discord, msg);
                 if (msg.HasMentionPrefix(_discord.CurrentUser, ref argPos))
                 {
+                    if (IsRatelimited(context.User.Id)) return;
+
                     using (context.Channel.EnterTypingState())
                     {
                         await ExecuteAsync(context, _provider, context.Message.Content.Substring(argPos));
