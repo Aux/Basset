@@ -25,6 +25,7 @@ namespace Basset.Commands
         }
 
         [Command]
+        [Remarks("Get some songs recommended based on this guild's listening activity")]
         public async Task GuildRecommendAsync()
         {
             var tracks = _db.Listens.Where(x => x.GuildId == Context.Guild.Id).ToList()
@@ -36,6 +37,7 @@ namespace Basset.Commands
         }
 
         [Command("user")]
+        [Remarks("Get some songs recommended based on this user's listening activity")]
         public async Task UserRecommendAsync([Remainder]SocketGuildUser user = null)
         {
             user = user == null ? Context.User as SocketGuildUser : user;
@@ -49,6 +51,7 @@ namespace Basset.Commands
         }
 
         [Command("tracks")]
+        [Remarks("Get some songs similar to the tracks you specify")]
         public Task RecommendTracksAsync(params string[] tracks)
         {
             if (tracks.Length > 4 || tracks.Length == 0)
@@ -58,6 +61,7 @@ namespace Basset.Commands
         }
 
         [Command("artists")]
+        [Remarks("Get some songs similar to the artists you specify")]
         public Task RecommendArtistsAsync(params string[] artists)
         {
             if (artists.Length > 4 || artists.Length == 0)
@@ -67,6 +71,7 @@ namespace Basset.Commands
         }
 
         [Command("genres")]
+        [Remarks("Get some songs similar to the genres you specify")]
         public Task RecommendGenresAsync(params string[] genres)
         {
             if (genres.Length > 4 || genres.Length == 0)

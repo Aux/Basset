@@ -21,6 +21,7 @@ namespace Basset.Commands
 
         [Priority(1)]
         [Command("tracks"), Alias("t")]
+        [Remarks("View the top 10 tracks in this guild")]
         public async Task TopTracksAsync()
         {
             var tracks = _db.Listens.Where(x => x.GuildId == Context.Guild.Id).ToList()
@@ -42,6 +43,7 @@ namespace Basset.Commands
 
         [Priority(1)]
         [Command("listeners"), Alias("l", "listens", "users")]
+        [Remarks("View the top 10 listeners in this guild")]
         public async Task TopListenersAsync()
         {
             var users = _db.Listens.Where(x => x.GuildId == Context.Guild.Id).ToList()
@@ -60,8 +62,10 @@ namespace Basset.Commands
 
         [Priority(2)]
         [Command]
-        public async Task UserTopAsync(SocketGuildUser user)
+        [Remarks("View a user's top 10 tracks")]
+        public async Task UserTopAsync([Remainder]SocketGuildUser user = null)
         {
+            user = user == null ? Context.User as SocketGuildUser : user;
             var listens = _db.Listens.Where(x => x.GuildId == Context.Guild.Id && x.UserId == user.Id).ToList()
                 .GroupBy(x => x.TrackId)
                 .OrderByDescending(x => x.Count())

@@ -19,6 +19,7 @@ namespace Basset.Commands
         }
 
         [Command("track"), Alias("song")]
+        [Remarks("Get a random song from this guild or user's listening activity")]
         public async Task RandomTrack([Remainder]SocketGuildUser user = null)
         {
             var tracks = user == null ?
