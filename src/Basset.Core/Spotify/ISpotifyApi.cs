@@ -11,6 +11,9 @@ namespace Basset.Spotify
         Task<SpotifyRecommendedResponse> GetRecommendationsAsync(
             [Header("Authorization")]string authorization, [QueryMap]GetRecommendationsParams args);
 
+        [Get("search")]
+        Task<SpotifySearchResponse> GetSearchAsync([Header("Authorization")]string authorization, [QueryMap]GetSearchParams args);
+
         [Post("users/{userId}/playlists")]
         Task<object> CreatePlaylistAsync(
             [Header("Authorization")]string authorization,
