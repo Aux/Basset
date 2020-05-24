@@ -5,9 +5,15 @@ VisualStudioVersion = 16.0.30014.187
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basset.Bot", "src\Basset.Bot\Basset.Bot.csproj", "{74A52CE6-2481-45D2-9970-B7CCEB721448}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basset.Core", "src\Basset.Core\Basset.Core.csproj", "{296A1189-47F0-49A6-B32B-CD4007A7D022}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basset.Core", "src\Basset.Core\Basset.Core.csproj", "{296A1189-47F0-49A6-B32B-CD4007A7D022}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basset.Logger", "src\Basset.Logger\Basset.Logger.csproj", "{2D1F3724-5177-432D-B6CC-E30B4487B9DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basset.Collector", "src\Basset.Collector\Basset.Collector.csproj", "{2D1F3724-5177-432D-B6CC-E30B4487B9DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basset.Generator", "src\Basset.Generator\Basset.Generator.csproj", "{280B6635-1E93-45E6-A404-8D5219718D9F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Discord", "Discord", "{2C7A1551-FA09-435C-8CC4-763BCBBCB606}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{AE960EBB-C700-4D81-B071-F5760527B31C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +33,18 @@ Global
 		{2D1F3724-5177-432D-B6CC-E30B4487B9DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D1F3724-5177-432D-B6CC-E30B4487B9DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D1F3724-5177-432D-B6CC-E30B4487B9DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{280B6635-1E93-45E6-A404-8D5219718D9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{280B6635-1E93-45E6-A404-8D5219718D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{280B6635-1E93-45E6-A404-8D5219718D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{280B6635-1E93-45E6-A404-8D5219718D9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{74A52CE6-2481-45D2-9970-B7CCEB721448} = {2C7A1551-FA09-435C-8CC4-763BCBBCB606}
+		{2D1F3724-5177-432D-B6CC-E30B4487B9DB} = {2C7A1551-FA09-435C-8CC4-763BCBBCB606}
+		{280B6635-1E93-45E6-A404-8D5219718D9F} = {AE960EBB-C700-4D81-B071-F5760527B31C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F2255A0D-040F-4A42-9C58-4BD53E6095F1}
