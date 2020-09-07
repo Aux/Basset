@@ -1,4 +1,7 @@
 ﻿using Basset.Logging;
+using Basset.Services;
+using Discord;
+using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -23,8 +26,17 @@ namespace Basset.Collector
             });
             var logger = loggerFactory.CreateLogger<CollectingService>();
 
-            var collector = new CollectingService(logger, config);
-            await collector.RunAsync();
+            var discord = new DiscordShardedClient(new DiscordSocketConfig
+            {
+                GatewayIntents = GatewayIntents.GuildPresences | GatewayIntents.Guilds,
+                LogLevel = LogSeverity.Debug
+            });
+
+            var loggingService = new LoggingService(loggerFactory, discord, null);
+            loggingService.Start();
+
+            var collectingService = new CollectingService(logger, discord, config);
+            await collectingService.RunAsync();
         }
     }
 }

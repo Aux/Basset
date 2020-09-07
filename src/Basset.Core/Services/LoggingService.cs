@@ -24,7 +24,8 @@ namespace Basset.Services
 
         public void Start()
         {
-            _commandService.Log += OnLogAsync;
+            if (_commandService != null)
+                _commandService.Log += OnLogAsync;
             _discord.Log += OnLogAsync;
         }
 
